@@ -7,3 +7,11 @@ def test_login():
     page = Profile()
     page.open()
     page.login()
+
+
+@allure.story('Checking user country')
+def test_check_country():
+    page = Profile()
+    page.open()
+    page.login()
+    page.check_country()

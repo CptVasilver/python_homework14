@@ -14,6 +14,10 @@ class Profile:
         browser.element('.search-dropdown').click()
         browser.element(f'[data-option="{value}"]').click()
 
+    def check_country(self):
+        browser.element('.header-main__user').click()
+        browser.element('.text-sd').should(have.text('Afghanistan'))
+
     def assert_pint(self):
         browser.element('[data-test-id="profile-name"]').should(have.text('awwwards.'))
         browser.element('[data-test-id="main-user-description-text"]').should(have.text('The awards for design, '
@@ -39,7 +43,13 @@ class Profile:
         browser.element('[href="https://www.pinterest.es/awwwards/"]').click()
         self.assert_pint()
 
-    def check_coursers(self):
+    def check_categories(self):
         self.choose_page('course')
         self.scroll('filter-box__list')
         self.assert_courses()
+
+    def check_course(self):
+        self.choose_page('course')
+        self.scroll('filter-box__list')
+        browser.element('.card-academy__title').should(have.text('Master Figma from 0 to 100'))
+        browser.element('.card-academy__by').should(have.text('Mirko Santangelo'))
